@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import SignUpForm from './components/SignUpForm';
@@ -8,6 +8,13 @@ import Home from './components/Home';
 
 function App() {
   const [user, setUser] = React.useState(null);
+  console.log({user})
+
+  useEffect(() => {
+    fetch('/me')
+      .then(res => res.json())
+      .then(user => setUser(user))
+  }, []);
 
   return (
     <div className="App">
