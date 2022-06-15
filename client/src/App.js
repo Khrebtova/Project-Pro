@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import NavBar from './components/NavBar';
+import SignUpForm from './components/SignUpForm';
+import LoginForm from './components/LoginForm';
+import Home from './components/Home';
 
 function App() {
+  const [user, setUser] = React.useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <NavBar user={user} onLogout={setUser}/>
+      <h1>Project Pro application for assigning projects to your epmloyees</h1>
+        <Routes>
+          <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
+          <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
+          <Route path="/" element={<Home user={user}/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
