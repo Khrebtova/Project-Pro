@@ -14,15 +14,37 @@ const NavBar = ({user, onLogout}) => {
             navigate('/login')
         })        
     }
+
+    const loggedinButtons = () => {
+        return (
+            <div>
+                
+                <button onClick={() => navigate('/')}>Home</button>
+                <button onClick= {handleLogout}>Log out</button> 
+            </div>
+        )
+    }
     
+    const loggedOutButtons = () => {
+        return (
+            <div>
+                <button onClick= {() => navigate('/signup')} >Create an account</button>
+                <button onClick= {() => navigate('/login')}>Log in</button>
+            </div>
+        )
+    }
+
   return (
-    <div> 
-        {user ? `welcome ${user.username}` : "please login"}
-      <button onClick={() => navigate('/')}>Home</button>
-      <button onClick= {() => navigate('/signup')} >Create an account</button>
-      <button onClick= {() => navigate('/login')}>Log in</button>
-      <button onClick= {handleLogout}>Log out</button> 
-    </div>
+    <header>
+        {user ? loggedinButtons() : loggedOutButtons()}
+    </header>
+    // <div> 
+    //     {user ? `welcome ${user.username}` : "please login"}
+    //   <button onClick={() => navigate('/')}>Home</button>
+    //   <button onClick= {() => navigate('/signup')} >Create an account</button>
+    //   <button onClick= {() => navigate('/login')}>Log in</button>
+    //   <button onClick= {handleLogout}>Log out</button> 
+    // </div>
   )
 }
 

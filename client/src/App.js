@@ -8,13 +8,18 @@ import Home from './components/Home';
 
 function App() {
   const [user, setUser] = React.useState(null);
+  
   console.log({user})
 
   useEffect(() => {
-    fetch('/me')
-      .then(res => res.json())
-      .then(user => setUser(user))
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
   }, []);
+
+  // if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div className="App">
