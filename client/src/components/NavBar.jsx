@@ -17,9 +17,11 @@ const NavBar = ({user, onLogout}) => {
 
     const loggedinButtons = () => {
         return (
-            <div>
-                
+            <div>                
                 <button onClick={() => navigate('/')}>Home</button>
+                <button onClick={()=> navigate('/employees')}>Employees</button>
+                <button onClick={()=> navigate('/clients')}>Clients</button>
+                <button onClick={()=>navigate('/projects')}>Projects</button>
                 <button onClick= {handleLogout}>Log out</button> 
             </div>
         )

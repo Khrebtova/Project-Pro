@@ -4,7 +4,11 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
-import Home from './components/Home';
+import Home from './pages/Home';
+import EmployeeList from './pages/EmployeeList';
+import ClientList from './pages/ClientList';
+import ProjectList from './pages/ProjectList';
+
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -30,6 +34,9 @@ function App() {
           <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
           <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
           <Route path="/" element={<Home user={user}/>} />
+          <Route path="/employees" element={<EmployeeList user={user}/>} />
+          <Route path="/clients" element={<ClientList user={user}/>} />
+          <Route path="/projects" element={<ProjectList user={user}/>} />
         </Routes>
       </Router>
     </div>
