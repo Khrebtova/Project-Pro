@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpForm = ({onLogin}) => {
-    const defaultData = {
+  const navigate = useNavigate()
+
+  const defaultData = {
         "username": '',
         "password": '',
         "passwordConfirmation": '',
@@ -18,20 +21,13 @@ const SignUpForm = ({onLogin}) => {
         console.log(formData)
         setNewUser(formData)}
     
-
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [role, setRole] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
         setErrors([]);
-        // setIsLoading(true);
+        setIsLoading(true);
         fetch("/signup", {
           method: "POST",
           headers: {
@@ -46,10 +42,11 @@ const SignUpForm = ({onLogin}) => {
             role: newUser.role,
           }),
         }).then((r) => { 
-        //   setIsLoading(false);
-          
+          setIsLoading(false);          
           if (r.created) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => {
+              navigate('/')
+              onLogin(user)});
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -65,7 +62,7 @@ const SignUpForm = ({onLogin}) => {
           id="username"
           autoComplete="off"
           value={newUser.username}
-        //   onChange={(e) => setUsername(e.target.value)}
+        
         onChange={handleChange}
         />
       
@@ -75,7 +72,7 @@ const SignUpForm = ({onLogin}) => {
           type="password"
           id="password"
           value={newUser.password}
-        //   onChange={(e) => setPassword(e.target.value)}
+        
           onChange={handleChange}
           autoComplete="current-password"
         />
@@ -86,7 +83,7 @@ const SignUpForm = ({onLogin}) => {
           id="passwordConfirmation"
           value={newUser.passwordConfirmation}
           onChange={handleChange}
-        //   onChange={(e) => setPasswordConfirmation(e.target.value)}
+        
           autoComplete="current-password"
         />
       
@@ -96,7 +93,7 @@ const SignUpForm = ({onLogin}) => {
           id="firstName"
           value={newUser.firstName}
           onChange={handleChange}
-          // onChange={(e) => setFirstName(e.target.value)}
+          
         />
       
         <label htmlFor="lastName">Last Name</label>
@@ -105,7 +102,7 @@ const SignUpForm = ({onLogin}) => {
           id="lastName"
           value={newUser.lastName}
           onChange={handleChange}
-        //   onChange={(e) => setLastName(e.target.value)}
+        
         />
      
         <label htmlFor="role">Your role</label>
@@ -114,12 +111,12 @@ const SignUpForm = ({onLogin}) => {
           id="role"
           value={newUser.role}
           onChange={handleChange}
-          // onChange={(e) => setRole(e.target.value)}
+          
         />
      
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>     
       
-        {errors.map((err) => (<h2 key={err}>{err}</h2>))}
+        {errors ? errors.map((err) => (<h2 key={err}>{err}</h2>)) : null}
       
     </form>
 

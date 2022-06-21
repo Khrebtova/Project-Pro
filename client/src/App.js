@@ -16,6 +16,7 @@ function App() {
   console.log({user})
 
   useEffect(() => {
+    document.title = 'Project Tracker';
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -29,7 +30,7 @@ function App() {
     <div className="App">
       <Router>
       <NavBar user={user} onLogout={setUser}/>
-      <h1>Project Pro application for assigning projects to your epmloyees</h1>
+      <h1>Project Tracker</h1>
         <Routes>
           <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
           <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
