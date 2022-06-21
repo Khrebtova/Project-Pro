@@ -112,10 +112,10 @@ const SignUpForm = ({onLogin}) => {
           value={newUser.role}
           onChange={handleChange}
           
-        />
-     
+        />     
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>     
-      
+        <h2>Or login to your account</h2>
+        <button onClick={()=>navigate('/login')}>Login</button>
         {errors ? errors.map((err) => (<h2 key={err}>{err}</h2>)) : null}
       
     </form>
