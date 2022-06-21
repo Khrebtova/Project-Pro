@@ -1,4 +1,4 @@
 class EmployeeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :title
-  has_many :projects
+  attributes :id, :name, :title, :projects_count
+  # has_many :projects
 end
