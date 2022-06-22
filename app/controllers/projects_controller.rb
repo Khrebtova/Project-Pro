@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     def index
         user = find_user
         if user
-            @projects = Project.all
+            @projects = Project.all.order(:updated_at).reverse
             render json: @projects
         else
             render json: {errors: ["Unauthorized"]}, status: :unauthorized
