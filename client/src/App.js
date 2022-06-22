@@ -70,7 +70,7 @@ function App() {
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/employees" element={<EmployeeList user={user}/>} />
           <Route path="/clients" element={<ClientList user={user}/>} />
-          <Route path="/projects" element={<ProjectList user={user}/>} />          
+          <Route path="/projects" element={<ProjectList user={user} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>
     </div>

@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Project from '../components/Project'
 
-const ProjectList = () => {
-  console.log("ProjectList")
+const ProjectList = ({user, clients, employees}) => {
+  
   const [projects, setProjects] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [errors, setErrors] = useState([])
@@ -16,12 +16,14 @@ const ProjectList = () => {
         .catch(err => setErrors(err))
       }, [])
 
+  const renderProjects = projects.map(project => <Project key={project.id} project={project} clients={clients} employees={employees}/>)
+
   return (
     <div>
       <h2>Project List</h2>
-      <Project />      
-      {isLoading ? <p>Loading...</p> : null}
-      {projects.map(project => <li key={project.id}>{project.name}, employee: {project.employee.name}, {project.employee.title}, client: {project.client.name}</li>)}
+      {isLoading ? <p>Loading...</p> : renderProjects}    
+      
+      {/* {projects.map(project => <li key={project.id}>{project.name}, employee: {project.employee.name}, {project.employee.title}, client: {project.client.name}</li>)} */}
       {errors ? errors.map(error => <p key={error}>{error}</p>) : null}  
     
     </div>
