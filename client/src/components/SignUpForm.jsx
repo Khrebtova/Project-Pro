@@ -71,8 +71,7 @@ const SignUpForm = ({onLogin}) => {
         <input
           type="password"
           id="password"
-          value={newUser.password}
-        
+          value={newUser.password}        
           onChange={handleChange}
           autoComplete="current-password"
         />
@@ -82,8 +81,7 @@ const SignUpForm = ({onLogin}) => {
           type="password"
           id="passwordConfirmation"
           value={newUser.passwordConfirmation}
-          onChange={handleChange}
-        
+          onChange={handleChange}        
           autoComplete="current-password"
         />
       

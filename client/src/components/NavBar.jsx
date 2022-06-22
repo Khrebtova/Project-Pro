@@ -9,8 +9,6 @@ import { useNavigate, Link } from 'react-router-dom'
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 
-
-
 const NavBar = ({user, onLogout}) => {
     const navigate = useNavigate()
     
@@ -41,6 +39,8 @@ const NavBar = ({user, onLogout}) => {
             <div>
                 <button onClick= {() => navigate('/signup')} >Create an account</button>
                 <button onClick= {() => navigate('/login')}>Log in</button>
+                {/* <Link to='/signup'>Create an account</Link>
+                <Link to='/login'>Log in</Link> */}
             </div>
         )
     }

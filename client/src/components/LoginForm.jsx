@@ -6,11 +6,9 @@ const LoginForm = ({onLogin}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
-    console.log(username, password)
-    
+        
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("trying to login")
         fetch("/login", {
             method: "POST",
             headers: {
@@ -32,8 +30,7 @@ const LoginForm = ({onLogin}) => {
     return (
         <div>
             <h2> Already have an account? Please log In</h2>
-            <form onSubmit={handleSubmit}>
-                
+            <form onSubmit={handleSubmit}>                
                 <input type="text" id="username" placeholder="username"  autoComplete="off" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <input type="password" id="password" placeholder="password" autoComplete="off" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit">Login</button>
