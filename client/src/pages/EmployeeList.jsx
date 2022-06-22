@@ -16,13 +16,12 @@ const EmployeeList = () => {
       .catch(err => setErrors(err))
     }, [])
 
-
+    const renderEmployees = employees.map(employee => <Employee employee={employee} key={employee.id} />)
   return (
     <div>
       <h2>Employee List</h2>
-      {isLoading ? <p>Loading...</p> : null}
-      <Employee />
-      {employees.map(employee => <li key={employee.id}>{employee.name}, projects: {employee.projects_count}</li>)}
+      {isLoading ? <p>Loading...</p> : renderEmployees}
+      
       {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
     </div>
   )

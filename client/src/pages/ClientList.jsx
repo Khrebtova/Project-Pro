@@ -22,8 +22,7 @@ const ClientList = ({user}) => {
   return (
     <div>
       <h2>Client List</h2>
-      {clients ? renderClients : <p>Loading...</p>}      
-      {/* {clients.map(client => <li key={client.id}>{client.name}, projects: {client.projects_count}</li>)} */}
+      {isLoading ? <p>Loading...</p> : renderClients}      
       {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
     </div>
   )

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const Client = ({client}) => {
   const [showProjects, setShowProjects] = useState(false)
-  const listOfProjects = client.projects.map(project => <li key={project.id}>{project.name}</li>)
+  const listOfProjects = client.projects.map(project => project.completed ? <li key={project.id}>{project.name}, COMPLETED</li> : <li key={project.id}>{project.name}, IN PROGRESS</li>)
 
   return (
     <div onClick={()=>{setShowProjects(!showProjects)}}>

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const Employee = ({employee}) => {
   const [showProjects, setShowProjects] = useState(false)
-  const listOfProjects = employee.projects.map(project => <li key={project.id}>{project.name}</li>)
+  const listOfProjects = employee.projects.map(project => project.completed ? <li key={project.id}>{project.name}, COMPLETED</li> : <li key={project.id}>{project.name}, IN PROGRESS</li>)
 
   return (
     <div onClick={()=>{setShowProjects(!showProjects)}}>
