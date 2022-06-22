@@ -19,8 +19,7 @@ function App() {
   const [errors, setErrors] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  console.log({user})
-
+//auto login if user is logged in
   useEffect(() => {
     document.title = 'Project Tracker';
     fetch("/me").then((r) => {
@@ -56,13 +55,29 @@ function App() {
     .catch(err => setErrors([...errors, err]))
   }, [errors])
 
+  const deleteProject = (id) => {
+    const newlist = projects.filter(project => project.id !== id)
+    setProjects(newlist)
+  }
+
+  const updateProject = (updatedProject) => {
+    const newlist = projects.map(project => project.id === updatedProject.id ? updatedProject : project)
+    setProjects(newlist)
+  }
+
+  const addProject = (newProject) => {
+    console.log("newProject:", newProject)
+    const newlist = [...projects, newProject]
+    setProjects(newlist)
+  }
+
   // if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div className="App">
       <Router>
       <NavBar user={user} onLogout={setUser} />      
-      {showForm ? <NewProjectForm setShowForm = {setShowForm} user={user} clients={clients} employees={employees}/> : null}
+      {showForm ? <NewProjectForm setShowForm = {setShowForm} user={user} clients={clients} employees={employees} onAddProject={addProject}/> : null}
       {showForm ? <button onClick={() => setShowForm(false)}>Cancel</button> : <button onClick={() => setShowForm(true)}>New Project</button>}
         <Routes>
           <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
@@ -70,7 +85,7 @@ function App() {
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/employees" element={<EmployeeList user={user}/>} />
           <Route path="/clients" element={<ClientList user={user}/>} />
-          <Route path="/projects" element={<ProjectList user={user} clients={clients} employees={employees}/>} />          
+          <Route path="/projects" element={<ProjectList user={user} projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>
     </div>

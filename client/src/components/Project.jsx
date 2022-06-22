@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Project = ({project, clients, employees}) => {
+const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}) => {
   const [isEditing, setIsEditing] = useState(false)
   const [name, setName] = useState(project.name)
   const [clientId, setClientId] = useState(project.client.id)
@@ -9,9 +9,9 @@ const Project = ({project, clients, employees}) => {
   const [errors, setErrors] = useState([])
   
   const handleDelete = () => {
-    console.log('delete', project.name)
-    fetch(`/projects/${project.id}`, { method: 'DELETE' }).then((res)=> {if (res.ok){
-      console.log('deleted')
+    fetch(`/projects/${project.id}`, { method: 'DELETE' })
+    .then((res)=> {if (res.ok){
+      onDeleteProject(project.id)
     }})
   }
 
@@ -39,7 +39,7 @@ const Project = ({project, clients, employees}) => {
     .then(res => {
             if(res.ok) {
                 res.json().then(data => {
-                    console.log(data)
+                    onUpdateProject(data)
                     setIsEditing(false)                    
                 })
             } else {

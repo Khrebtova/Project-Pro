@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NewProjectForm = ({setShowForm, user, clients, employees}) => {
+const NewProjectForm = ({setShowForm, user, clients, employees, onAddProject}) => {
     
     const navigate = useNavigate()    
     const [name, setName] = useState('')
@@ -27,15 +27,13 @@ const NewProjectForm = ({setShowForm, user, clients, employees}) => {
         console.log(newProject)
         fetch('/projects', {
             method: 'POST',
-            headers: {'content-type': 'application/json',
-                        'accept': 'application/json'
-                    },
+            headers: {'content-type': 'application/json', 'accept': 'application/json'},
             body: JSON.stringify(newProject)
         })
         .then(res => {
-                if(res.created) {
+                if(res.ok) {
                     res.json().then(data => {
-                        console.log(data)
+                        onAddProject(data)
                         setShowForm(false)
                         navigate('/projects')
                     })
