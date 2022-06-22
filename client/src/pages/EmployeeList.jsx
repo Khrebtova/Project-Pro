@@ -10,7 +10,6 @@ const EmployeeList = () => {
     fetch('/employees')    
       .then(r => r.json())
       .then(data => {      
-        console.log(data)
         setEmployees(data)
         setIsLoading(false)
       })

@@ -16,6 +16,8 @@ function App() {
   const [clients, setClients] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   console.log({user})
 
@@ -28,25 +30,47 @@ function App() {
     });
   }, []);
 
+// fetching clients, employees, and projects
   useEffect(()=>{
-      
-  }, [])
+    fetch('/employees')    
+    .then(r => r.json())
+    .then(data => {      
+      console.log("employees:", data)
+      setEmployees(data)
+      })
+    .catch(err => setErrors([...errors, err]))
+
+    fetch('/clients')
+    .then(r => r.json())
+    .then(data => {
+      console.log("clients:", data)
+      setClients(data)
+      })
+    .catch(err => setErrors([...errors, err]))
+
+    fetch('/projects')
+    .then(r => r.json())
+    .then(data => {
+      console.log("projects:", data)
+      setProjects(data)})
+    .catch(err => setErrors([...errors, err]))
+  }, [errors])
 
   // if (!user) return <LoginForm onLogin={setUser} />;
 
   return (
     <div className="App">
       <Router>
-      <NavBar user={user} onLogout={setUser}/>
-      <h1>Project Tracker</h1>
+      <NavBar user={user} onLogout={setUser} />      
+      {showForm ? <NewProjectForm setShowForm = {setShowForm} user={user} clients={clients} employees={employees}/> : null}
+      {showForm ? <button onClick={() => setShowForm(false)}>Cancel</button> : <button onClick={() => setShowForm(true)}>New Project</button>}
         <Routes>
           <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
           <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
-          <Route path="/" element={<Home user={user}/>} />
+          <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/employees" element={<EmployeeList user={user}/>} />
           <Route path="/clients" element={<ClientList user={user}/>} />
-          <Route path="/projects" element={<ProjectList user={user}/>} />
-          <Route path="/projects/new" element= {<NewProjectForm user={user}/>} />
+          <Route path="/projects" element={<ProjectList user={user}/>} />          
         </Routes>
       </Router>
     </div>

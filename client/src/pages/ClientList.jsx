@@ -9,8 +9,7 @@ const ClientList = () => {
   useEffect(() => {
     fetch('/clients')    
       .then(r => r.json())
-      .then(data => {      
-        console.log(data)
+      .then(data => {        
         setClients(data)
         setIsLoading(false)
       })

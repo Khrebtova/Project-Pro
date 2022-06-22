@@ -1,11 +1,21 @@
 import React, { useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const NewProjectForm = ({onSetAddProject}) => {
+const NewProjectForm = ({setShowForm, user, clients, employees}) => {
+    
+    const navigate = useNavigate()    
     const [name, setName] = useState('')
     const [clientId, setClientId] = useState('')
     const [employeeId, setEmployeeId] = useState('')
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
     // const [isLoading, setIsLoading] = useState(false)
+
+    const dropDownClients = () => {
+        return clients.map(client => <option key={client.id} value={client.id}>{client.name}</option>)
+    }
+    const dropDownEmployees = () => {
+        return employees.map(employee => <option key={employee.id} value={employee.id}>{employee.name}, {employee.title}</option>)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -15,32 +25,51 @@ const NewProjectForm = ({onSetAddProject}) => {
             employee_id: employeeId
         }
         console.log(newProject)
-        onSetAddProject(false)
+        fetch('/projects', {
+            method: 'POST',
+            headers: {'content-type': 'application/json',
+                        'accept': 'application/json'
+                    },
+            body: JSON.stringify(newProject)
+        })
+        .then(res => {
+                if(res.created) {
+                    res.json().then(data => {
+                        console.log(data)
+                        setShowForm(false)
+                        navigate('/projects')
+                    })
+                } else {
+                    res.json().then(data => {
+                        setErrors(data.errors)                        
+                    })
+                }
+        })
+        .catch(err => console.log(err))        
     }
+
   return (
     <form onSubmit={handleSubmit}>
-        <label htmlFor='projectname'>Name of new project:</label>
+        <h3>New Project</h3>
         <input 
             type="text" 
             id="projectname"
             autoComplete="off"
             value = {name}
+            placeholder = "Project name"
             onChange = {(e) => setName(e.target.value)}
         />
-        <label>Choose Client:</label>
-        <select value={clientId} onChange={e => setClientId(e.target.value)}>
+        
+        <select  onChange={(e) => setClientId(e.target.value)}>
             <option value="">Select a client</option>
-            <option value={1}>Client 1</option>
-            <option value={2}>Client 2</option>
-            <option value={3}>Client 3</option>
+            {dropDownClients()}
         </select>
-        <label>Choose Employee:</label>
-        <select value={employeeId} onChange={e => setEmployeeId(e.target.value)}>
+        
+        <select  onChange={(e) => setEmployeeId(e.target.value)}>
             <option value="">Select a employee</option>
-            <option value={1}>Employee 1</option>
-            <option value={2}>Employee 2</option>
-            <option value={3}>Employee 3</option>
+            {dropDownEmployees()}
         </select>
+        {errors? errors.map(error => <p key={error}>{error}</p>) : null}
         <button type="submit">Submit</button>
     </form>
   )
