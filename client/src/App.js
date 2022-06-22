@@ -84,7 +84,7 @@ function App() {
           <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/employees" element={<EmployeeList user={user}/>} />
-          <Route path="/clients" element={<ClientList user={user}/>} />
+          <Route path="/clients" element={<ClientList user={user} clients={clients}/>} />
           <Route path="/projects" element={<ProjectList user={user} projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>

@@ -1,21 +1,21 @@
 import React , {useEffect, useState}from 'react'
 import Client from '../components/Client'
 
-const ClientList = () => {
-  const [clients, setClients] = useState([])
+const ClientList = ({user, clients}) => {
+  // const [clients, setClients] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [errors, setErrors] = useState([])
 
-  useEffect(() => {
-    fetch('/clients')    
-      .then(r => r.json())
-      .then(data => {        
-        setClients(data)
-        setIsLoading(false)
-      })
-      .catch(err => setErrors(err))
-    }, [])
-
+  // useEffect(() => {
+  //   fetch('/clients')    
+  //     .then(r => r.json())
+  //     .then(data => {        
+  //       setClients(data)
+  //       setIsLoading(false)
+  //     })
+  //     .catch(err => setErrors(err))
+  //   }, [])
+    console.log(clients)
 
   return (
     <div>

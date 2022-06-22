@@ -91,6 +91,7 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
       </div>
     )
   }
+  
   return (
     <div>
       {isEditing ? editProject() : showProject()}

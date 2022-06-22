@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Client = () => {
+const Client = ({client}) => {
+  
   return (
     <div>Client</div>
   )
