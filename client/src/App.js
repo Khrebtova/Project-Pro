@@ -53,7 +53,7 @@ function App() {
       console.log("projects:", data)
       setProjects(data)})
     .catch(err => setErrors([...errors, err]))
-  }, [errors])
+  }, [user, errors])
 
   const deleteProject = (id) => {
     const newlist = projects.filter(project => project.id !== id)
@@ -71,7 +71,18 @@ function App() {
     setProjects(newlist)
   }
 
-  // if (!user) return <LoginForm onLogin={setUser} />;
+  if (!user) return (
+    <div className="App">
+      <Router>
+        <NavBar />
+        <Routes>
+            <Route path="/" element={<Home user={user}/>} />
+            <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
+            <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
+        </Routes>
+      </Router>
+    </div>
+  )
 
   return (
     <div className="App">

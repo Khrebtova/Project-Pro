@@ -1,5 +1,4 @@
 class ClientSerializer < ActiveModel::Serializer
-  attributes :id, :name, :projects_count
-
-  # has_many :projects
+  attributes :id, :name, :projects_count, :projects
+ 
 end
