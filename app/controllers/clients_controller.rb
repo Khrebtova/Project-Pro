@@ -1,28 +1,20 @@
 class ClientsController < ApplicationController
+    before_action :authorize
+    
     # GET /clients
     def index
-        user = find_user
-        if user
-            @clients = Client.all
-            render json: @clients, status: :ok
-        else
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
-        end
+        @clients = Client.all
+        render json: @clients, status: :ok        
     end
 
     # # GET /clients/1
-    # def show
-    #     user = find_user
-    #     if user
+    # def show    #     
     #         @client = find_client
     #         if @client 
     #             render json: @client, status: :ok
     #         else
     #             render json: {errors: ["Client not found"]}, status: :not_found
-    #         end
-    #     else
-    #         render json: {errors: ["Unauthorized"]}, status: :unauthorized
-    #     end
+    #         end    #     
     # end
 
     # DELETE /clients/1
@@ -42,7 +34,8 @@ class ClientsController < ApplicationController
         Client.find_by(id: params[:id])
     end
 
-    def find_user
-        User.find_by(id: session[:user_id])
+    # authorize the user
+    def authorize
+        render json: {errors: ["Unauthorized"]}, status: :unauthorized unless session.include? :user_id
     end
 end

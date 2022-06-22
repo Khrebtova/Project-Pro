@@ -1,13 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+// import AppBar from '@mui/material/AppBar';
+// import Box from '@mui/material/Box';
+// import Toolbar from '@mui/material/Toolbar';
+// import Typography from '@mui/material/Typography';
+// import Button from '@mui/material/Button';
+// import IconButton from '@mui/material/IconButton';
+// import MenuIcon from '@mui/icons-material/Menu';
 
 const NavBar = ({user, onLogout}) => {
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ const NavBar = ({user, onLogout}) => {
         <header>
             {user ? loggedinButtons() : loggedOutButtons()}
         </header>
-        <Box sx={{ flexGrow: 1 }}>
+        {/* <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
@@ -66,7 +66,7 @@ const NavBar = ({user, onLogout}) => {
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
-        </Box>
+        </Box> */}
     </div>
    
   )

@@ -1,76 +1,52 @@
 class EmployeesController < ApplicationController
-    
+    before_action :authorize
+
     # GET /employees
-    def index
-        user = find_user
-        if user
-            employees = Employee.all    
-            render json: employees, status: :ok
-        else
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
-        end
+    def index        
+        employees = Employee.all    
+        render json: employees, status: :ok
     end
     
      # GET /employees/1
-    def show
-        user = find_user
-        if user 
-            employee = find_employee
-            if employee
-                render json: employee, status: :ok
-            else
-                render json: {errors: ["Employee not found"]}, status: :not_found
-            end
-        else 
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
+    def show        
+        employee = find_employee
+        if employee
+            render json: employee, status: :ok
+        else
+            render json: {errors: ["Employee not found"]}, status: :not_found
         end
     end
 
      # PATCH/PUT /employees/1
     def update
-        user = find_user
-        if user
-            employee = find_employee
-            if employee
-                employee.update(employee_params)
-                render json: employee, status: :ok
-            else
-                render json: {errors: ["Employee not found"]}, status: :not_found
-            end
+        employee = find_employee
+        if employee
+            employee.update(employee_params)
+            render json: employee, status: :ok
         else
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
-        end
+            render json: {errors: ["Employee not found"]}, status: :not_found
+        end        
     end
 
      # POST /employees
-    def create
-        user = find_user
-        if user
-            employee = Employee.create(employee_params)
-            if employee.valid?
-                render json: employee, status: :created
-            else
-                render json: {errors: employee.errors.full_messages}, status: :unprocessable_entity
-            end
+    def create        
+        employee = Employee.create(employee_params)
+        if employee.valid?
+            render json: employee, status: :created
         else
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
-        end
+            render json: {errors: employee.errors.full_messages}, status: :unprocessable_entity
+        end        
     end
 
      # DELETE /employees/1
-    def destroy
-        user = find_user
-        if user
-            @employee = find_employee
-            if @employee
-                @employee.destroy
-                head :no_content, status: :ok
-            else
-                render json: {errors: ["Employee not found"]}, status: :not_found
-            end
+    def destroy       
+        @employee = find_employee
+        if @employee
+            @employee.destroy
+            head :no_content, status: :ok
         else
-            render json: {errors: ["Unauthorized"]}, status: :unauthorized
-        end
+            render json: {errors: ["Employee not found"]}, status: :not_found
+        end   
     end
 
     private
@@ -83,8 +59,9 @@ class EmployeesController < ApplicationController
         Employee.find_by(id: params[:id])
     end
 
-    def find_user
-        User.find_by(id: session[:user_id])
+    # authorize the user
+    def authorize
+        render json: {errors: ["Unauthorized"]}, status: :unauthorized unless session.include? :user_id
     end
 
 
