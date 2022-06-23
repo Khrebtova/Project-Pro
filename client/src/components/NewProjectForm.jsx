@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NewProjectForm = ({setShowForm, user, clients, employees, onAddProject}) => {
+const NewProjectForm = ({setShowForm, clients, employees, onAddProject}) => {
     
     const navigate = useNavigate()    
     const [name, setName] = useState('')
@@ -47,29 +47,32 @@ const NewProjectForm = ({setShowForm, user, clients, employees, onAddProject}) =
     }
 
   return (
-    <form className='App-project-form' onSubmit={handleSubmit}>
-        <h3>New Project</h3>
-        <input 
-            type="text" 
-            id="projectname"
-            autoComplete="off"
-            value = {name}
-            placeholder = "Project name"
-            onChange = {(e) => setName(e.target.value)}
-        />
-        
-        <select  onChange={(e) => setClientId(e.target.value)}>
-            <option value="">Select a client</option>
-            {dropDownClients()}
-        </select>
-        
-        <select  onChange={(e) => setEmployeeId(e.target.value)}>
-            <option value="">Select a employee</option>
-            {dropDownEmployees()}
-        </select>
-        {errors? errors.map(error => <p key={error}>{error}</p>) : null}
-        <button type="submit">Submit</button>
-    </form>
+    <div className='App-form'>
+        <h3 className='App-logo'>New Project</h3>
+        <form className='App-form-input' onSubmit={handleSubmit}>
+            <input 
+                type="text" 
+                id="projectname"
+                autoComplete="off"
+                value = {name}
+                placeholder = "Project name"
+                onChange = {(e) => setName(e.target.value)}
+            />
+            
+            <select className='dropdown' onChange={(e) => setClientId(e.target.value)}>
+                <option value="">Select a client</option>
+                {dropDownClients()}
+            </select>
+            
+            <select className='dropdown' onChange={(e) => setEmployeeId(e.target.value)}>
+                <option value="">Select a employee</option>
+                {dropDownEmployees()}
+            </select>
+            {errors? errors.map(error => <p key={error}>{error}</p>) : null}
+            <button className="submit-button" type="submit">Submit</button>
+            <button className="cancel-button" onClick={() => setShowForm(false)}>X</button>
+        </form>
+    </div>
   )
 }
 

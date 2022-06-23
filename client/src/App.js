@@ -11,7 +11,8 @@ import ProjectList from './pages/ProjectList';
 import NewProjectForm from './components/NewProjectForm';
 import NewClientForm from './components/NewClientForm';
 import NewEmployeeForm from './components/NewEmployeeForm';
-
+import Logout from './pages/Logout';
+import ShowFormButtons from './components/ShowFormButtons';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,6 +21,8 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [errors, setErrors] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [showFormClient, setShowFormClient] = useState(false);
+  const [showFormEmployee, setShowFormEmployee] = useState(false);
 
 //auto login if user is logged in
   useEffect(() => {
@@ -90,13 +93,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <NavBar user={user} onLogout={setUser} />      
-      {showForm ? <NewProjectForm setShowForm = {setShowForm} user={user} clients={clients} employees={employees} onAddProject={addProject}/> : null}
-      {showForm ? <button onClick={() => setShowForm(false)}>Cancel</button> : <button onClick={() => setShowForm(true)}>New Project</button>}
+      <NavBar user={user} /> 
+      {showFormClient ? <NewClientForm onSetShowFormClient={setShowFormClient}/> : null}
+      {showFormEmployee? <NewEmployeeForm onSetShowFormEmployee={setShowFormEmployee}/> : null }  
+      {showForm ? <NewProjectForm setShowForm = {setShowForm} clients={clients} employees={employees} onAddProject={addProject}/> : null}      
+      <ShowFormButtons onSetShowForm={setShowForm} onSetShowFormClient={setShowFormClient} onSetShowFormEmployee={setShowFormEmployee}/>
         <Routes>
-          {/* <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
-          <Route path="/login" element={<LoginForm onLogin={setUser}/>} /> */}
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
+          <Route path="/logout" element={<Logout onLogout={setUser} />} />
           <Route path="/employees" element={<EmployeeList employees={employees}/>} />
           <Route path="/clients" element={<ClientList clients={clients}/>} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
