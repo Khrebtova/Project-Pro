@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NewClientForm = ({onSetShowFormClient}) => {
+const NewClientForm = ({onSetShowFormClient, onAddClient}) => {
     const navigate = useNavigate()    
     const [name, setName] = useState('')
     const [errors, setErrors] = useState([])
@@ -21,8 +21,8 @@ const NewClientForm = ({onSetShowFormClient}) => {
         .then(res => {
                 if(res.ok) {
                     res.json().then(data => {
-                        console.log(data)
-                        // setShowForm(false)
+                        onAddClient(data)
+                        onSetShowFormClient(false)
                         navigate('/clients')
                     })
                 } else {

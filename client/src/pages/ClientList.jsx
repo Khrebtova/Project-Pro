@@ -1,9 +1,9 @@
 import React from 'react'
 import Client from '../components/Client'
 
-const ClientList = ({clients}) => {
+const ClientList = ({clients, onDeleteClient}) => {
    
-  const renderClients = clients.map(client => <Client client={client} key={client.id} />)
+  const renderClients = clients.map(client => <Client client={client} onDeleteClient={onDeleteClient} key={client.id} />)
   
   return (
     <div>

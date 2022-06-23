@@ -1,17 +1,18 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NewEmployeeForm = ({onSetShowFormEmployee}) => {
+const NewEmployeeForm = ({onSetShowFormEmployee, onAddEmployee}) => {
     const navigate = useNavigate()    
     const [name, setName] = useState('')
     const [title, setTitle] = useState('')
     const [errors, setErrors] = useState([])
-    // const [isLoading, setIsLoading] = useState(false)
+    
 
      const handleSubmit = (e) => {
         e.preventDefault()
         const newEmployee = {
-            name: name
+            name: name,
+            title: title
         }
         console.log(newEmployee)
         fetch('/employees', {
@@ -22,7 +23,7 @@ const NewEmployeeForm = ({onSetShowFormEmployee}) => {
         .then(res => {
                 if(res.ok) {
                     res.json().then(data => {
-                        console.log(data)
+                        onAddEmployee(data)
                         // setShowForm(false)
                         navigate('/employees')
                     })

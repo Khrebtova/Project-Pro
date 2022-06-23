@@ -7,6 +7,15 @@ class ClientsController < ApplicationController
         render json: @clients, status: :ok        
     end
 
+    def create
+        @client = Client.create(client_params)
+        if @client.valid?
+            render json: @client, status: :created
+        else
+            render json: {errors: @client.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+
     # # GET /clients/1
     # def show    #     
     #         @client = find_client
@@ -18,17 +27,20 @@ class ClientsController < ApplicationController
     # end
 
     # DELETE /clients/1
-    # def delete
-    #     @client = find_client
-    #     if @client
-    #         @client.destroy
-    #         head :no_content, status: :ok
-    #     else
-    #         render json: {errors: ["Client not found"]}, status: :not_found
-    #     end
-    # end
+    def destroy
+        @client = find_client
+        if @client&&@client.projects_count==0
+            @client.destroy
+            head :no_content, status: :ok
+        else
+            render json: {errors: ["Client not found or Client has ongoing projects"]}, status: :not_found
+        end
+    end
 
     private
+    def client_params
+        params.permit(:name)
+    end
 
     def find_client
         Client.find_by(id: params[:id])

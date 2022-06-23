@@ -1,8 +1,8 @@
 import React from 'react'
 import Employee from '../components/Employee'
 
-const EmployeeList = ({employees}) => {
-  const renderEmployees = employees.map(employee => <Employee employee={employee} key={employee.id} />)
+const EmployeeList = ({employees, onDeleteEmployee}) => {
+  const renderEmployees = employees.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee}/>)
   
   return (
     <div>

@@ -17,16 +17,16 @@ class EmployeesController < ApplicationController
         end
     end
 
-     # PATCH/PUT /employees/1
-    def update
-        employee = find_employee
-        if employee
-            employee.update(employee_params)
-            render json: employee, status: :ok
-        else
-            render json: {errors: ["Employee not found"]}, status: :not_found
-        end        
-    end
+    #  # PATCH/PUT /employees/1
+    # def update
+    #     employee = find_employee
+    #     if employee
+    #         employee.update(employee_params)
+    #         render json: employee, status: :ok
+    #     else
+    #         render json: {errors: ["Employee not found"]}, status: :not_found
+    #     end        
+    # end
 
      # POST /employees
     def create        
@@ -41,11 +41,11 @@ class EmployeesController < ApplicationController
      # DELETE /employees/1
     def destroy       
         @employee = find_employee
-        if @employee
+        if @employee&&@employee.projects_count==0
             @employee.destroy
             head :no_content, status: :ok
         else
-            render json: {errors: ["Employee not found"]}, status: :not_found
+            render json: {errors: ["Employee not found or has ongoing projects"]}, status: :not_found
         end   
     end
 

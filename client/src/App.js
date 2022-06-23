@@ -58,7 +58,7 @@ function App() {
       // console.log("projects:", data)
       setProjects(data)})
     .catch(err => setErrors([...errors, err]))
-  }, [user, errors])
+  }, [user,projects, errors])
 
   const deleteProject = (id) => {
     const newlist = projects.filter(project => project.id !== id)
@@ -68,6 +68,7 @@ function App() {
   const updateProject = (updatedProject) => {
     const newlist = projects.map(project => project.id === updatedProject.id ? updatedProject : project)
     setProjects(newlist)
+
   }
 
   const addProject = (newProject) => {
@@ -75,6 +76,28 @@ function App() {
     const newlist = [...projects, newProject]
     setProjects(newlist)
   }
+
+  const addClient = (newClient) => {
+    console.log("newClient:", newClient)
+    const newlist = [...clients, newClient]
+    setClients(newlist)
+  }
+
+  const deleteClient = (id) => {
+    const newlist = clients.filter(client => client.id !== id)
+    setClients(newlist)
+  }
+
+  const addEmployee = (newEmployee) => {
+    const newList = [...employees, newEmployee]
+    setEmployees(newList)
+  }
+
+  const deleteEmployee = (id) => {
+    const newList = employees.filter(employee => employee.id !== id)
+    setEmployees(newList)
+  }
+
 
   if (!user) return (
     <div className="App">
@@ -94,15 +117,15 @@ function App() {
     <div className="App">
       <Router>
       <NavBar user={user} /> 
-      {showFormClient ? <NewClientForm onSetShowFormClient={setShowFormClient}/> : null}
-      {showFormEmployee? <NewEmployeeForm onSetShowFormEmployee={setShowFormEmployee}/> : null }  
+      {showFormClient ? <NewClientForm onSetShowFormClient={setShowFormClient} onAddClient={addClient}/> : null}
+      {showFormEmployee? <NewEmployeeForm onSetShowFormEmployee={setShowFormEmployee} onAddEmployee={addEmployee}/> : null }  
       {showForm ? <NewProjectForm setShowForm = {setShowForm} clients={clients} employees={employees} onAddProject={addProject}/> : null}      
       <ShowFormButtons onSetShowForm={setShowForm} onSetShowFormClient={setShowFormClient} onSetShowFormEmployee={setShowFormEmployee}/>
         <Routes>
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/logout" element={<Logout onLogout={setUser} />} />
-          <Route path="/employees" element={<EmployeeList employees={employees}/>} />
-          <Route path="/clients" element={<ClientList clients={clients}/>} />
+          <Route path="/employees" element={<EmployeeList employees={employees} onDeleteEmployee={deleteEmployee}/>} />
+          <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient}/>} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>

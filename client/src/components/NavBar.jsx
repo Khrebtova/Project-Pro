@@ -8,7 +8,7 @@ const NavBar = ({user}) => {
         return (
             <header className='App-header'>
                 <h3 className='App-logo' onClick={() => navigate('/')}>Project Tracker</h3>
-                <div style={{justifySelf: 'center'}}>
+                <div style={{justifySelf: 'center', marginRight: '100px'}}>
                     <Link style={{color: "white", marginLeft: '20px', marginRight: '20px'}} to='/clients'>Clients</Link>
                     <Link style={{color: "white", marginLeft: '20px', marginRight: '20px'}} to='/projects'>Projects</Link>
                     <Link style={{color: "white", marginLeft: '20px', marginRight: '20px'}} to='/employees'>Employees</Link>                       

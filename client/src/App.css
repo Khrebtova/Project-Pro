@@ -54,9 +54,15 @@
 .show-form-button {
   background-color: #97a5c0;
   border-color: #97a5c0;
+  
   color: white;
   font-size: calc(10px + 1vmin);
   min-height: 30px;  
+}
+
+.show-form-button:hover {
+  background-color: #8b9ab8;
+  border-color: #8b9ab8; 
 }
 
 .submit-button {
@@ -100,21 +106,4 @@
 
 
 
-.App-link {
-  color: #61dafb;
-}
 
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(10deg);
-  }
-} */
