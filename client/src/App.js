@@ -9,6 +9,8 @@ import EmployeeList from './pages/EmployeeList';
 import ClientList from './pages/ClientList';
 import ProjectList from './pages/ProjectList';
 import NewProjectForm from './components/NewProjectForm';
+import NewClientForm from './components/NewClientForm';
+import NewEmployeeForm from './components/NewEmployeeForm';
 
 
 function App() {
@@ -34,7 +36,7 @@ function App() {
     fetch('/employees')    
     .then(r => r.json())
     .then(data => {      
-      console.log("employees:", data)
+      // console.log("employees:", data)
       setEmployees(data)
       })
     .catch(err => setErrors([...errors, err]))
@@ -42,7 +44,7 @@ function App() {
     fetch('/clients')
     .then(r => r.json())
     .then(data => {
-      console.log("clients:", data)
+      // console.log("clients:", data)
       setClients(data)
       })
     .catch(err => setErrors([...errors, err]))
@@ -50,7 +52,7 @@ function App() {
     fetch('/projects')
     .then(r => r.json())
     .then(data => {
-      console.log("projects:", data)
+      // console.log("projects:", data)
       setProjects(data)})
     .catch(err => setErrors([...errors, err]))
   }, [user, errors])
@@ -81,6 +83,7 @@ function App() {
             <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
         </Routes>
       </Router>
+      <h3>Please Signup or Login</h3>
     </div>
   )
 
@@ -91,12 +94,12 @@ function App() {
       {showForm ? <NewProjectForm setShowForm = {setShowForm} user={user} clients={clients} employees={employees} onAddProject={addProject}/> : null}
       {showForm ? <button onClick={() => setShowForm(false)}>Cancel</button> : <button onClick={() => setShowForm(true)}>New Project</button>}
         <Routes>
-          <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
-          <Route path="/login" element={<LoginForm onLogin={setUser}/>} />
+          {/* <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
+          <Route path="/login" element={<LoginForm onLogin={setUser}/>} /> */}
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
-          <Route path="/employees" element={<EmployeeList user={user}/>} />
-          <Route path="/clients" element={<ClientList user={user} clients={clients}/>} />
-          <Route path="/projects" element={<ProjectList user={user} projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
+          <Route path="/employees" element={<EmployeeList employees={employees}/>} />
+          <Route path="/clients" element={<ClientList clients={clients}/>} />
+          <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>
     </div>

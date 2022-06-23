@@ -1,7 +1,7 @@
 import React  from 'react'
 
 const Home = ({user, clients, employees, projects}) => {
-  
+  console.log(user)
   const loggedInPage = () => {
       return (
         <div>
@@ -12,11 +12,11 @@ const Home = ({user, clients, employees, projects}) => {
         </div>
       )
     }
+
     return (
-    <div>
-      <h1>Project Tracker</h1>
-       {user ?  loggedInPage() : "please login"}
-    </div>
+      <div>
+        {user ? loggedInPage() : <h2>Please log in</h2>}
+      </div>
   )
 }
 

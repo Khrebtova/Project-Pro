@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -14,12 +15,51 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #6a80ad;
+  border: solid;
+  border-color: whitesmoke;
+  min-height: 50px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-project-form {
+  background-color: #97a5c0;
+  border: solid;
+  border-color: whitesmoke;
+  max-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-client-form {
+  background-color: #9faac0;
+  border: solid;
+  border-color: whitesmoke;
+  max-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-client-form {
+  background-color: #808da8;
+  border: solid;
+  border-color: whitesmoke;
+  max-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
 }

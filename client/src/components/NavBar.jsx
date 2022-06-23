@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import {Box, Button, Stack } from '@mui/material'
 // import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 // import Toolbar from '@mui/material/Toolbar';
@@ -24,50 +24,30 @@ const NavBar = ({user, onLogout}) => {
 
     const loggedinButtons = () => {
         return (
-            <div>                               
-                <button onClick={() => navigate('/')}>Home</button>
+            <header className='App-header'>
+                <h3 onClick={() => navigate('/')}>Project Tracker</h3>                       
                 <button onClick={()=> navigate('/employees')}>Employees</button>
                 <button onClick={()=> navigate('/clients')}>Clients</button>
                 <button onClick={()=>navigate('/projects')}>Projects</button>                
                 <button onClick= {handleLogout}>Log out</button> 
-            </div>
+            </header>
         )
     }
     
     const loggedOutButtons = () => {
         return (
-            <div>
+            <header className='App-header'>
+                <h3 onClick={() => navigate('/')}>Project Tracker</h3>  
                 <button onClick= {() => navigate('/signup')} >Create an account</button>
                 <button onClick= {() => navigate('/login')}>Log in</button>
-            </div>
+            </header>
         )
     }
 
   return (
-    <div>
-        <header>
-            {user ? loggedinButtons() : loggedOutButtons()}
-        </header>
-        {/* <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                    <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box> */}
-    </div>
+    <>        
+        {user ? loggedinButtons() : loggedOutButtons()}    
+    </>
    
   )
 }

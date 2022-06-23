@@ -47,7 +47,7 @@ const NewProjectForm = ({setShowForm, user, clients, employees, onAddProject}) =
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='App-project-form' onSubmit={handleSubmit}>
         <h3>New Project</h3>
         <input 
             type="text" 
