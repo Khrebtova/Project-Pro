@@ -59,21 +59,30 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
             value = {name}
             placeholder = "Project name"
             onChange = {(e) => setName(e.target.value)}
+            style={{width: '200px', margin: '5px'}}
         />
         
-        <select  value={clientId} onChange={(e) => setClientId(e.target.value)}>
+        <select  
+        value={clientId} 
+        onChange={(e) => setClientId(e.target.value)}
+        style={{width: '200px', margin: '5px'}}
+        >
             <option value="">Select a client</option>
             {dropDownClients()}
         </select>
         
-        <select value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
+        <select 
+        value={employeeId} 
+        onChange={(e) => setEmployeeId(e.target.value)}
+        style={{width: '200px', margin: '5px'}}
+        >
             <option value="">Select a employee</option>
             {dropDownEmployees()}
         </select>
         <label htmlFor='completed'>Completed</label>
         <input id='completed' type={'checkbox'} checked={completed} onChange={(e) => setCompleted(e.target.checked)}/>
         {errors? errors.map(error => <p key={error}>{error}</p>) : null}
-        <button type="submit">Save</button>
+        <button type="submit" style={{width: '200px', margin: '5px'}}>Save</button>
     </form>
     
     )
