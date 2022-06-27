@@ -30,7 +30,6 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
       employee_id: employeeId,
       completed: completed
     }
-    console.log(updatedProject)
     fetch(`/projects/${project.id}`, {
       method: 'PATCH',
       headers: {'content-type': 'application/json','accept': 'application/json'},
@@ -60,8 +59,7 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
             placeholder = "Project name"
             onChange = {(e) => setName(e.target.value)}
             style={{width: '200px', margin: '5px'}}
-        />
-        
+        />        
         <select  
         value={clientId} 
         onChange={(e) => setClientId(e.target.value)}
@@ -69,8 +67,7 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
         >
             <option value="">Select a client</option>
             {dropDownClients()}
-        </select>
-        
+        </select>        
         <select 
         value={employeeId} 
         onChange={(e) => setEmployeeId(e.target.value)}
