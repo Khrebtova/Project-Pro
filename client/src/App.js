@@ -18,8 +18,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [clients, setClients] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const [projects, setProjects] = useState([]);
-  // const [errors, setErrors] = useState([]);
+  const [projects, setProjects] = useState([]);  
   const [showForm, setShowForm] = useState(false);
   const [showFormClient, setShowFormClient] = useState(false);
   const [showFormEmployee, setShowFormEmployee] = useState(false);
@@ -35,7 +34,6 @@ function App() {
   }, []);
 
 // fetching clients, employees, and projects
-
   useEffect(()=>{    
     fetch('/employees')    
     .then(r => r.json())

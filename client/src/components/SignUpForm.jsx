@@ -17,8 +17,7 @@ const SignUpForm = ({onLogin}) => {
     const handleChange = (e) => {
         let key = e.target.id
         let value = e.target.value
-        let formData = {...newUser, [key]: value}
-        console.log(formData)
+        let formData = {...newUser, [key]: value}        
         setNewUser(formData)}
     
     const [errors, setErrors] = useState([]);

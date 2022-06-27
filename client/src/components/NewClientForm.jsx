@@ -5,14 +5,12 @@ const NewClientForm = ({onSetShowFormClient, onAddClient}) => {
     const navigate = useNavigate()    
     const [name, setName] = useState('')
     const [errors, setErrors] = useState([])
-    // const [isLoading, setIsLoading] = useState(false)
 
-     const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         const newClient = {
             name: name
-        }
-        console.log(newClient)
+        }        
         fetch('/clients', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},

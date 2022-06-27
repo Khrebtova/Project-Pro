@@ -7,14 +7,12 @@ const NewEmployeeForm = ({onSetShowFormEmployee, onAddEmployee}) => {
     const [title, setTitle] = useState('')
     const [errors, setErrors] = useState([])
     
-
-     const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         const newEmployee = {
             name: name,
             title: title
-        }
-        console.log(newEmployee)
+        }        
         fetch('/employees', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},
