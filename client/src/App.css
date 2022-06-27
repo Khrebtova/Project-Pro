@@ -104,6 +104,44 @@
   font-size: calc(20px); 
 }
 
+.projectCardContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.projectCard {
+  border: solid;
+  font-size: calc(15px);
+  border-color: gray;
+  height: 180px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 10px;
+}
+
+.clientCardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* flex-direction: column;
+  justify-content: center;  */
+  
+}
+.clientCard{
+  background-color: #b7c8e9;
+  border: solid;
+  border-color: white;
+  align-self: center;
+  max-width: 800px;
+  min-width: 400px;
+  min-height: 150px; 
+}
+
 
 
 

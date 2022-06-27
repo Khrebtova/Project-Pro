@@ -15,12 +15,13 @@ const Client = ({client, onDeleteClient}) => {
     })  
   }
 
+  
   return (
-    <div onClick={()=>{setShowProjects(!showProjects)}}>
-      <h4>{client.name}</h4>
-      {client.projects_count === 1 ? <p>{client.projects_count} project:</p> : <p>{client.projects_count} projects:</p>}      
+    <div  onClick={()=>{setShowProjects(!showProjects)}} className='clientCard'>    
+      <h3>{client.name}</h3>
+      {client.projects_count === 1 ? <p> 1 project ↓</p> : <p>{client.projects_count} projects ↓</p>}
       {showProjects ? listOfProjects : null}
-      {client.projects_count === 0 ? <button onClick={handleDelete}>Delete</button> : null}       
+      {client.projects_count === 0 ? <button onClick={handleDelete}>Delete</button> : null}      
     </div>
   )
 }

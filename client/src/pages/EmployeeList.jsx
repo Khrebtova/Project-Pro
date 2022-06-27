@@ -1,14 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Employee from '../components/Employee'
 
 const EmployeeList = ({employees, onDeleteEmployee}) => {
-  const renderEmployees = employees.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee}/>)
+  const [search, setSearch] = useState('')
+  let employeeList = employees.filter(employee => employee.name.toLowerCase().includes(search) || employee.title.toLowerCase().includes(search))
+  const renderEmployees = employeeList.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee}/>)
   
   return (
-    <div>
-      <h2>Employee List</h2>      
-      {employees ? renderEmployees : <p>Can't find employees</p>}      
-    </div>
+    <>
+      <h2>Employee List  <input type='text' placeholder=' 🔍 SEARCH' onChange={(e)=>setSearch(e.target.value)}/></h2>
+      
+      <div className='clientCardContainer'>      
+        {employees ? renderEmployees : <p>Can't find employees</p>} 
+      </div>       
+    </>
   )
 }
 

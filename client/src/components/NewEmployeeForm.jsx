@@ -24,7 +24,7 @@ const NewEmployeeForm = ({onSetShowFormEmployee, onAddEmployee}) => {
                 if(res.ok) {
                     res.json().then(data => {
                         onAddEmployee(data)
-                        // setShowForm(false)
+                        onSetShowFormEmployee(false)
                         navigate('/employees')
                     })
                 } else {

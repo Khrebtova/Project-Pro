@@ -1,7 +1,7 @@
 import React  from 'react'
 
 const Home = ({user, clients, employees, projects}) => {
-  console.log(user)
+  
   const loggedInPage = () => {
       return (
         <div>

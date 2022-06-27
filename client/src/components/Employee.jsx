@@ -16,9 +16,10 @@ const Employee = ({employee, onDeleteEmployee}) => {
   }
 
   return (
-    <div onClick={()=>{setShowProjects(!showProjects)}}>
-      <h4>{employee.name}</h4>
-      {employee.projects_count === 1 ? <p>{employee.projects_count} project:</p> : <p>{employee.projects_count} projects:</p>}      
+    <div onClick={()=>{setShowProjects(!showProjects)}} className='clientCard'>      
+      <h4>{employee.name}, {employee.title}</h4>
+      
+      {employee.projects_count === 1 ? <p> 1 project ↓</p> : <p>{employee.projects_count} projects ↓</p>}      
       {showProjects ? listOfProjects : null} 
       {employee.projects_count === 0 ? <button onClick={handleDelete}>Delete</button> : null}       
     </div>

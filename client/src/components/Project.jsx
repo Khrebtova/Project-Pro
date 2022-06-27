@@ -82,18 +82,26 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
   const showProject =()=>{
     return(
       <div>
-        <h4>{project.name.toUpperCase()}</h4>
-        {project.completed ? <p>PROJECT COMPLETED!</p> : <p>PROJECT IN PROGRESS</p>}
-        <p>Client: {project.client.name}</p>
-        <p>Employee: {project.employee.name}, {project.employee.title}</p>
-        <button onClick={()=> {setIsEditing(!isEditing)}}>Edit</button>
-        <button onClick={handleDelete}>Delete</button>
+        <div style={{backgroundColor: '#6a80adb0', fontSize: '20px'}}>
+          {project.name.toUpperCase()}
+        </div>        
+        {project.completed ? <p style={{backgroundColor: 'white', color: "green", fontStyle: 'oblique'}}>COMPLETED!</p> : <p style={{backgroundColor: 'white',color: "red", fontStyle: 'oblique'}}>IN PROGRESS</p>}
+        <div >
+          Client: {project.client.name}
+        </div>
+        <div >
+          Employee: {project.employee.name}, {project.employee.title}
+        </div>
+        <div>
+          <button onClick={()=> {setIsEditing(!isEditing)}}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
       </div>
     )
   }
   
   return (
-    <div>
+    <div className="projectCard">
       {isEditing ? editProject() : showProject()}
     </div>
   )
