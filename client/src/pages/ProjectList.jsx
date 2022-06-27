@@ -6,11 +6,11 @@ const ProjectList = ({clients, employees, projects, onDeleteProject, onUpdatePro
   
   let projectList;
   if (filter === 'all') {
-    projectList = projects
+    projectList = projects;
   }else if (filter === 'completed') {
-    projectList = projects.filter(project => project.completed === true)
+    projectList = projects.filter(project => project.completed === true);
   }else{
-    projectList = projects.filter(project => project.completed === false || project.completed === null)    
+    projectList = projects.filter(project => project.completed === false || project.completed === null)  ;  
   }
 
   const renderProjects = projectList.map(project => <Project key={project.id} project={project} clients={clients} employees={employees} onDeleteProject={onDeleteProject} onUpdateProject={onUpdateProject}/>)

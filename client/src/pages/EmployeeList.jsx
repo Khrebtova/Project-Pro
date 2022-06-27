@@ -6,6 +6,7 @@ const EmployeeList = ({employees, onDeleteEmployee}) => {
   let employeeList = employees.filter(employee => employee.name.toLowerCase().includes(search) || employee.title.toLowerCase().includes(search))
   const renderEmployees = employeeList.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee}/>)
   
+  
   return (
     <>
       <h2>Employee List  <input type='text' placeholder=' 🔍 SEARCH' onChange={(e)=>setSearch(e.target.value)}/></h2>

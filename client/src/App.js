@@ -19,7 +19,7 @@ function App() {
   const [clients, setClients] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showFormClient, setShowFormClient] = useState(false);
   const [showFormEmployee, setShowFormEmployee] = useState(false);
@@ -35,27 +35,28 @@ function App() {
   }, []);
 
 // fetching clients, employees, and projects
-  useEffect(()=>{
+
+  useEffect(()=>{    
     fetch('/employees')    
     .then(r => r.json())
     .then(data => {      
       setEmployees(data)
       })
-    .catch(err => setErrors([...errors, err]))
+    .catch(err => console.log(err))
 
     fetch('/clients')
     .then(r => r.json())
     .then(data => {
       setClients(data)
       })
-    .catch(err => setErrors([...errors, err]))
+    .catch(err => console.log(err))
 
     fetch('/projects')
     .then(r => r.json())
     .then(data => {
       setProjects(data)})
-    .catch(err => setErrors([...errors, err]))
-  }, [user, projects, errors])
+    .catch(err => console.log(err))
+  }, [projects])
 
   const deleteProject = (id) => {
     const newlist = projects.filter(project => project.id !== id)
@@ -84,11 +85,6 @@ function App() {
     const newlist = clients.filter(client => client.id !== id)
     setClients(newlist)
   }
-  const handleSearchClients = (search) => {
-    const newlist = clients.filter(client => client.name.toLowerCase().includes(search.toLowerCase()))
-    console.log(newlist)
-    setClients(newlist)
-  }
 
   const addEmployee = (newEmployee) => {
     const newList = [...employees, newEmployee]
@@ -99,12 +95,6 @@ function App() {
     const newList = employees.filter(employee => employee.id !== id)
     setEmployees(newList)
   }
-
-  const handleSearchEmployees=(search)=>{
-    const newList = employees.filter(employee => employee.name.toLowerCase().includes(search.toLowerCase()))
-    setEmployees(newList)
-  }
-
 
   if (!user) return (
     <div className="App">
@@ -131,8 +121,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/logout" element={<Logout onLogout={setUser} />} />
-          <Route path="/employees" element={<EmployeeList employees={employees} onSetEmployees={setEmployees} onDeleteEmployee={deleteEmployee}/>} />
-          <Route path="/clients" element={<ClientList clients={clients} onSearchClients={handleSearchClients} onDeleteClient={deleteClient}/>} />
+          <Route path="/employees" element={<EmployeeList employees={employees} onDeleteEmployee={deleteEmployee}/>} />
+          <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient}/>} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>
       </Router>
