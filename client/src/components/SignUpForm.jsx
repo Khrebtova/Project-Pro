@@ -54,7 +54,7 @@ const SignUpForm = ({onLogin}) => {
     
   return (
     <form className='signup-form' onSubmit={handleSubmit}>
-      
+        <h2>Create new account</h2>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -110,9 +110,9 @@ const SignUpForm = ({onLogin}) => {
           
         />     
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>     
-        <h2>Or login to your account</h2>
+        <h3>Or login to your account</h3>
         <button onClick={()=>navigate('/login')}>Login</button>
-        {errors ? errors.map((err) => (<h4 style={{color: 'red'}} key={err}>{err}</h4>)) : null}
+        {errors ? errors.map((err) => (<p style={{color: 'red'}} key={err}>{err}</p>)) : null}
       
     </form>
 

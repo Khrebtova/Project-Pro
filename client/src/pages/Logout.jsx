@@ -5,13 +5,14 @@ const Logout = ({onLogout}) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        fetch('/logout', {method: 'DELETE'})
-        .then((res) => {
-            if (res.ok) {
+        fetch('/logout', {
+            method: "DELETE"
+        })
+        .then(() => {            
                 onLogout(null)
                 navigate('/login')
             }
-        })        
+        )        
     }
 
   return (

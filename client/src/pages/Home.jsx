@@ -1,3 +1,4 @@
+
 import React  from 'react'
 
 const Home = ({user, clients, employees, projects}) => {
@@ -15,7 +16,7 @@ const Home = ({user, clients, employees, projects}) => {
 
     return (
       <div>
-        {user ? loggedInPage() : <h2>Please log in</h2>}
+        {user ? loggedInPage() : null}
       </div>
   )
 }

@@ -23,12 +23,13 @@ function App() {
   const [showFormClient, setShowFormClient] = useState(false);
   const [showFormEmployee, setShowFormEmployee] = useState(false);
 
+  
 //auto login if user is logged in
   useEffect(() => {
     document.title = 'Project Tracker';
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((data) => setUser(data));
       }
     });
   }, []);
@@ -104,7 +105,7 @@ function App() {
             <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
         </Routes>
       </Router>
-      <h3>Please Signup or Login</h3>
+      {/* <h3>Please Signup or Login</h3> */}
     </div>
   )
 

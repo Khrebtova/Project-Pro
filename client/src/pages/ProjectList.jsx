@@ -19,8 +19,8 @@ const ProjectList = ({clients, employees, projects, onDeleteProject, onUpdatePro
     <div >
       <h2 >Project List </h2>
       <input type='radio' name='filter' value='all' onChange={e => setFilter(e.target.value)} checked={filter === 'all'} /> All
-      <input type='radio' name='filter' value='completed' onChange={e => setFilter(e.target.value)} checked={filter === 'completed'} /> Show Completed
-      <input type='radio' name='filter' value='inProgress' onChange={e => setFilter(e.target.value)} checked={filter === 'inProgress'} /> Show In Progress
+      <input type='radio' name='filter' value='completed' onChange={e => setFilter(e.target.value)} checked={filter === 'completed'} /> Completed
+      <input type='radio' name='filter' value='inProgress' onChange={e => setFilter(e.target.value)} checked={filter === 'inProgress'} /> In Progress
       <div className='projectCardContainer'>
         {projects ? renderProjects : <p>No projects so far</p>}     
       </div>       
