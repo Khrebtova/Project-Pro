@@ -16,7 +16,7 @@ const Home = ({user, clients, employees, projects}) => {
 
     return (
       <div>
-        {user ? loggedInPage() : null}
+        {user ? loggedInPage() : <h2>Please Sign Up or Login</h2>}
       </div>
   )
 }
