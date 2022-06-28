@@ -8,7 +8,7 @@ const ClientList = ({clients, onDeleteClient}) => {
 
    return (
     <>
-      <h2>Client List  <input type='text' placeholder=' 🔍 SEARCH' onChange={(e)=>setSearch(e.target.value)}/></h2>
+      <h2>Client List  <input type='text' placeholder=' 🔍 SEARCH' onChange={(e)=>setSearch(e.target.value.toLowerCase())}/></h2>
      
         <div className='clientCardContainer'>
         {clients ? renderClients : <p>Can't find clients</p>}      
