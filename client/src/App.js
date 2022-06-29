@@ -48,14 +48,16 @@ function App() {
     .then(data => {
       setClients(data)
       })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err))  
+  }, [user, projects]) 
 
-    fetch('/projects')
+  useEffect(()=>{    
+     fetch('/projects')
     .then(r => r.json())
     .then(data => {
       setProjects(data)})
     .catch(err => console.log(err))
-  }, [projects])
+  }, [user])
 
   const deleteProject = (id) => {
     const newlist = projects.filter(project => project.id !== id)
@@ -68,14 +70,12 @@ function App() {
 
   }
 
-  const addProject = (newProject) => {
-    console.log("newProject:", newProject)
+  const addProject = (newProject) => {    
     const newlist = [...projects, newProject]
     setProjects(newlist)
   }
 
-  const addClient = (newClient) => {
-    console.log("newClient:", newClient)
+  const addClient = (newClient) => {    
     const newlist = [...clients, newClient]
     setClients(newlist)
   }
@@ -104,8 +104,7 @@ function App() {
             <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
             <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
         </Routes>
-      </Router>
-      {/* <h3>Please Signup or Login</h3> */}
+      </Router>      
     </div>
   )
 

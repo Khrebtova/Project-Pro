@@ -13,6 +13,7 @@ const NewProjectForm = ({setShowForm, clients, employees, onAddProject}) => {
     const dropDownClients = () => {
         return clients.map(client => <option key={client.id} value={client.id}>{client.name}</option>)
     }
+    
     const dropDownEmployees = () => {
         return employees.map(employee => <option key={employee.id} value={employee.id}>{employee.name}, {employee.title}</option>)
     }
@@ -24,7 +25,6 @@ const NewProjectForm = ({setShowForm, clients, employees, onAddProject}) => {
             client_id: clientId,
             employee_id: employeeId
         }
-        console.log(newProject)
         fetch('/projects', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},
