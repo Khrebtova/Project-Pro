@@ -4,12 +4,9 @@ import {useNavigate} from 'react-router-dom'
 
 const ClientPage = () => {
   const {id} = useParams();
-
   const navigate = useNavigate()
-
   const [client, setClient] = useState(null)
-  console.log(client)
-  
+    
   useEffect(() => {
     fetch(`/clients/${id}`)
     .then(res =>{
@@ -21,10 +18,9 @@ const ClientPage = () => {
   })
 }, [id])
 
-if (!client) {
-  return <div>Loading...</div>
-}
-
+  if (!client) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>

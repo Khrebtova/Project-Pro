@@ -7,8 +7,6 @@ const EmployeePage = () => {
   const navigate = useNavigate()
   const [employee, setEmployee] = useState(null)
 
-  console.log(employee)
-
   useEffect(() => {
     fetch(`/employees/${id}`)
     .then(res =>{
@@ -18,7 +16,7 @@ const EmployeePage = () => {
       res.json().then(data=>console.log(data.errors))
     }
   })
-}, [id])
+  }, [id])
 
  if (!employee) {
     return <div>Loading...</div>

@@ -15,6 +15,7 @@ import Logout from './pages/Logout';
 import ShowFormButtons from './components/ShowFormButtons';
 import ClientPage from './pages/ClientPage';
 import EmployeePage from './pages/EmployeePage';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -126,6 +127,7 @@ function App() {
           <Route path="/clients/:id" element={<ClientPage />} />
           <Route path="/employees/:id" element={<EmployeePage />} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
+          <Route path="/user" element={<UserProfile user={user}/>} />
         </Routes>
       </Router>
     </div>

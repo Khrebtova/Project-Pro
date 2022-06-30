@@ -13,6 +13,7 @@ const NavBar = ({user}) => {
                     <Link style={{color: "white", marginLeft: '20px', marginRight: '20px'}} to='/projects'>Projects</Link>
                     <Link style={{color: "white", marginLeft: '20px', marginRight: '20px'}} to='/employees'>Employees</Link>                       
                 </div>
+                <Link style={{color: "white", marginLeft: '20px' }} to='/user'>👤Profile</Link>
                 <Link style={{color: "white", marginRight: '20px'}} to='/logout' >Log Out</Link>                
             </header>
         )
