@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import Client from '../components/Client'
 
-const ClientList = ({clients, onDeleteClient, onSelectClient}) => {
+const ClientList = ({clients, onDeleteClient}) => {
   const [search, setSearch] = useState('')
   let clientList = clients.filter(client => client.name.toLowerCase().includes(search))  
-  const renderClients = clientList.map(client => <Client client={client} onDeleteClient={onDeleteClient} onSelectClient={onSelectClient} key={client.id} />)
+  const renderClients = clientList.map(client => <Client client={client} onDeleteClient={onDeleteClient}  key={client.id} />)
 
    return (
     <>

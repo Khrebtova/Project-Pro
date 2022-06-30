@@ -24,8 +24,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [showFormClient, setShowFormClient] = useState(false);
   const [showFormEmployee, setShowFormEmployee] = useState(false);
-  const [selectedClient, setSelectedClient] = useState(null);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
+
 
 //auto login if user is logged in
   useEffect(() => {
@@ -122,12 +121,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/logout" element={<Logout onLogout={setUser} />} />
-          <Route path="/employees" element={<EmployeeList employees={employees} onDeleteEmployee={deleteEmployee} onSelectEmployee={setSelectedEmployee}/>} />
-          <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient} onSelectClient={setSelectedClient}/>} />
+          <Route path="/employees" element={<EmployeeList employees={employees} onDeleteEmployee={deleteEmployee} />} />
+          <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient} />} />
           <Route path="/clients/:id" element={<ClientPage />} />
-          {/* <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient} onSelectClient={setSelectedClient}/>}>
-            <Route path=':id' element={<ClientPage />} />
-          </Route>           */}
           <Route path="/employees/:id" element={<EmployeePage />} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
         </Routes>

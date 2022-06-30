@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Employee = ({employee, onDeleteEmployee, onSelectEmployee}) => {
+const Employee = ({employee, onDeleteEmployee}) => {
   const [showProjects, setShowProjects] = useState(false)
   const listOfProjects = employee.projects.map(project => project.completed ? <li key={project.id}>{project.name}, COMPLETED</li> : <li key={project.id}>{project.name}, IN PROGRESS</li>)
   const navigate = useNavigate()
@@ -17,8 +17,7 @@ const Employee = ({employee, onDeleteEmployee, onSelectEmployee}) => {
     }) 
   }
 
-  const handleShowEmployee =() => {
-    onSelectEmployee(employee.id)
+  const handleShowEmployee =() => {    
     navigate('/employees/' + employee.id)
   }
 

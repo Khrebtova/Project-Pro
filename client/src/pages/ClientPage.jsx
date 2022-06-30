@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router';
+import {useNavigate} from 'react-router-dom'
 
 const ClientPage = () => {
   const {id} = useParams();
-  console.log(id);
+
+  const navigate = useNavigate()
 
   const [client, setClient] = useState(null)
   console.log(client)
@@ -29,7 +31,7 @@ if (!client) {
       Client page        
         <h1>{client.name}</h1>
         <h4>Works with: </h4>
-        {client.employees.map(employee => <li id={employee.id} key={employee.id}>{employee.name}, {employee.title}</li>)}
+        {client.employees.map(employee => <li id={employee.id} key={employee.id} onClick={()=>navigate(`/employees/`+ employee.id)}>{employee.name}, {employee.title}</li>)}
         <h4>Project list: </h4>
         {client.projects.map(project => <li id={project.id} key={project.id}>{project.name}</li>)}
     </div>

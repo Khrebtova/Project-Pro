@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Client = ({client, onDeleteClient, onSelectClient}) => {
+const Client = ({client, onDeleteClient}) => {
   const [showProjects, setShowProjects] = useState(false)
   const listOfProjects = client.projects.map(project => project.completed ? <li key={project.id}>{project.name}, COMPLETED</li> : <li key={project.id}>{project.name}, IN PROGRESS</li>)
 
@@ -18,8 +18,7 @@ const Client = ({client, onDeleteClient, onSelectClient}) => {
     })  
   }
 
-  const handleShowClient =() => {
-    onSelectClient(client.id)
+  const handleShowClient =() => {    
     navigate('/clients/' + client.id)
   }
   
