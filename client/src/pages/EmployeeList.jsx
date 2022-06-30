@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import Employee from '../components/Employee'
 
-const EmployeeList = ({employees, onDeleteEmployee}) => {
+const EmployeeList = ({employees, onDeleteEmployee, onSelectEmployee}) => {
   const [search, setSearch] = useState('')
   let employeeList = employees.filter(employee => employee.name.toLowerCase().includes(search) || employee.title.toLowerCase().includes(search))
-  const renderEmployees = employeeList.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee}/>)
+  const renderEmployees = employeeList.map(employee => <Employee employee={employee} key={employee.id} onDeleteEmployee={onDeleteEmployee} onSelectEmployee={onSelectEmployee}/>)
   
   
   return (

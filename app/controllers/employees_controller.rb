@@ -9,26 +9,15 @@ class EmployeesController < ApplicationController
     
      # GET /employees/1
     def show        
-        employee = find_employee
+        employee = Employee.find(params[:id])
         if employee
-            render json: employee, status: :ok
+            render json: employee, serializer: EmployeeClientSerializer, status: :ok
         else
             render json: {errors: ["Employee not found"]}, status: :not_found
         end
     end
 
-    #  # PATCH/PUT /employees/1
-    # def update
-    #     employee = find_employee
-    #     if employee
-    #         employee.update(employee_params)
-    #         render json: employee, status: :ok
-    #     else
-    #         render json: {errors: ["Employee not found"]}, status: :not_found
-    #     end        
-    # end
-
-     # POST /employees
+    # POST /employees
     def create        
         employee = Employee.create(employee_params)
         if employee.valid?

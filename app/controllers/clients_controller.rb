@@ -16,15 +16,15 @@ class ClientsController < ApplicationController
         end
     end
 
-    # # GET /clients/1
-    # def show    #     
-    #         @client = find_client
-    #         if @client 
-    #             render json: @client, status: :ok
-    #         else
-    #             render json: {errors: ["Client not found"]}, status: :not_found
-    #         end    #     
-    # end
+    # GET /clients/1
+    def show        
+            client = find_client
+            if client 
+                render json: client, serializer: ClentEmployeeSerializer, status: :ok
+            else
+                render json: {errors: ["Client not found"]}, status: :not_found
+            end 
+    end
 
     # DELETE /clients/1
     def destroy
