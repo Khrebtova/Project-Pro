@@ -23,8 +23,7 @@ const EmployeePage = () => {
   }
 
   return (
-    <div>
-      <p>employee page {id}</p>
+    <div>      
       <h1>{employee.name}</h1>
       <h3>{employee.title}</h3>
       <h4>works with:</h4>

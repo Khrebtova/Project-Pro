@@ -23,8 +23,7 @@ const ClientPage = () => {
   }
 
   return (
-    <div>
-      Client page        
+    <div>           
         <h1>{client.name}</h1>
         <h4>Works with: </h4>
         {client.employees.map(employee => <li id={employee.id} key={employee.id} onClick={()=>navigate(`/employees/`+ employee.id)}>{employee.name}, {employee.title}</li>)}
