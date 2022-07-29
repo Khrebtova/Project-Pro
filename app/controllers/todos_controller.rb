@@ -1,4 +1,4 @@
-class TodosController < ApplicationController
+class Api::TodosController < ApplicationController
     # before_action :authorize 
 
     def create

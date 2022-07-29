@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class Api::ClientsController < ApplicationController
     before_action :authorize
     
     # GET /clients

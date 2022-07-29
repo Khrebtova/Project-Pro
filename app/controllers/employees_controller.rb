@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class Api::EmployeesController < ApplicationController
     before_action :authorize
 
     # GET /employees
