@@ -13,7 +13,7 @@ const NewEmployeeForm = ({onSetShowFormEmployee, onAddEmployee}) => {
             name: name,
             title: title
         }        
-        fetch('/employees', {
+        fetch('/api/employees', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},
             body: JSON.stringify(newEmployee)

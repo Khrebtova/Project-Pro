@@ -25,7 +25,7 @@ const NewProjectForm = ({setShowForm, clients, employees, onAddProject}) => {
             client_id: clientId,
             employee_id: employeeId
         }
-        fetch('/projects', {
+        fetch('/api/projects', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},
             body: JSON.stringify(newProject)

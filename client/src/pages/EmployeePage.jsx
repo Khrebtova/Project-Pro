@@ -8,7 +8,7 @@ const EmployeePage = () => {
   const [employee, setEmployee] = useState(null)
 
   useEffect(() => {
-    fetch(`/employees/${id}`)
+    fetch(`/api/employees/${id}`)
     .then(res =>{
       if (res.ok) {
     res.json().then(data=>setEmployee(data))

@@ -8,7 +8,7 @@ const Client = ({client, onDeleteClient}) => {
   const navigate = useNavigate()
   
   const handleDelete = () =>{    
-    fetch(`/clients/${client.id}`, {method: 'DELETE'})
+    fetch(`/api/clients/${client.id}`, {method: 'DELETE'})
     .then(res => {
       if(res.ok) {
         onDeleteClient(client.id)

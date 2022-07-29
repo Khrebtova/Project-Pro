@@ -11,7 +11,7 @@ const NewClientForm = ({onSetShowFormClient, onAddClient}) => {
         const newClient = {
             name: name
         }        
-        fetch('/clients', {
+        fetch('/api/clients', {
             method: 'POST',
             headers: {'content-type': 'application/json', 'accept': 'application/json'},
             body: JSON.stringify(newClient)

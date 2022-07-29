@@ -8,7 +8,7 @@ const ClientPage = () => {
   const [client, setClient] = useState(null)
     
   useEffect(() => {
-    fetch(`/clients/${id}`)
+    fetch(`/api/clients/${id}`)
     .then(res =>{
       if (res.ok) {
         res.json().then(data=>setClient(data))

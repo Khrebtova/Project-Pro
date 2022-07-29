@@ -30,7 +30,7 @@ const Project = ({project, clients, employees, onDeleteProject, onUpdateProject}
       employee_id: employeeId,
       completed: completed
     }
-    fetch(`/projects/${project.id}`, {
+    fetch(`/api/projects/${project.id}`, {
       method: 'PATCH',
       headers: {'content-type': 'application/json','accept': 'application/json'},
       body: JSON.stringify(updatedProject)

@@ -3,7 +3,7 @@ import React from 'react'
 const Todo = ({todo, onDeleteTodo}) => {
   
   const handleDeleteTodo = () => {
-    fetch(`/todos/${todo.id}`, {method: 'DELETE'})
+    fetch(`/api/todos/${todo.id}`, {method: 'DELETE'})
     .then(res => {
         if (res.ok) {
             onDeleteTodo(todo.id)

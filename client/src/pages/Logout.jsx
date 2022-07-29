@@ -5,7 +5,7 @@ const Logout = ({onLogout}) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        fetch('/logout', {
+        fetch('/api/logout', {
             method: "DELETE"
         })
         .then(() => {            

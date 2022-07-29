@@ -9,7 +9,7 @@ const UserProfile = ({user}) => {
     const handleSubmit =(e)=>{
         e.preventDefault()
         console.log(newTodo)
-        fetch('/todos', {
+        fetch('/api/todos', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({

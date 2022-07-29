@@ -7,7 +7,7 @@ const Employee = ({employee, onDeleteEmployee}) => {
   const navigate = useNavigate()
 
   const handleDelete = () =>{
-    fetch(`/employees/${employee.id}`, {method: 'DELETE'})
+    fetch(`/api/employees/${employee.id}`, {method: 'DELETE'})
     .then(res => {
       if(res.ok) {
         onDeleteEmployee(employee.id)

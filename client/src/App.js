@@ -30,7 +30,7 @@ function App() {
 //auto login if user is logged in
   useEffect(() => {
     document.title = 'Project Tracker';
-    fetch("/me").then((r) => {
+    fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((data) => setUser(data));
       }
@@ -39,14 +39,14 @@ function App() {
 
 // fetching clients, employees, and projects
   useEffect(()=>{    
-    fetch('/employees')    
+    fetch('/api/employees')    
     .then(r => r.json())
     .then(data => {      
       setEmployees(data)
       })
     .catch(err => console.log(err))
 
-    fetch('/clients')
+    fetch('/api/clients')
     .then(r => r.json())
     .then(data => {
       setClients(data)
@@ -55,7 +55,7 @@ function App() {
   }, [user, projects]) 
 
   useEffect(()=>{    
-     fetch('/projects')
+     fetch('/api/projects')
     .then(r => r.json())
     .then(data => {
       setProjects(data)})
