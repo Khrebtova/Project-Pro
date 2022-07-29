@@ -98,18 +98,19 @@ function App() {
     setEmployees(newList)
   }
 
-  if (!user) return (
-    <div className="App">
-      <Router>
-        <NavBar />
-        <Routes>
-            <Route path="/" element={<Home user={user}/>} />
-            <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
-            <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
-        </Routes>
-      </Router>      
-    </div>
-  )
+  // if (!user) return (
+  //   <div className="App">
+  //     <Router>
+  //       <NavBar />
+  //       <Routes>
+  //           <Route path="/" element={<Home user={user}/>} />
+  //           <Route path="/signup" element={<SignUpForm onLogin={setUser}/>} />
+  //           <Route path="/login" element={<LoginForm onLogin={setUser}/>} />          
+  //       </Routes>
+  //     </Router>      
+  //   </div>
+  // )
+  if (!user) return <LoginForm onLogin={setUser}/>
 
   return (
     <div className="App">
