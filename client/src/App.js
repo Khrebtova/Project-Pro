@@ -121,7 +121,6 @@ function App() {
       {showForm ? <NewProjectForm setShowForm = {setShowForm} clients={clients} employees={employees} onAddProject={addProject}/> : null}      
       <ShowFormButtons onSetShowForm={setShowForm} onSetShowFormClient={setShowFormClient} onSetShowFormEmployee={setShowFormEmployee}/>
         <Routes>
-          <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
           <Route path="/logout" element={<Logout onLogout={setUser} />} />
           <Route path="/employees" element={<EmployeeList employees={employees} onDeleteEmployee={deleteEmployee} />} />
           <Route path="/clients" element={<ClientList clients={clients} onDeleteClient={deleteClient} />} />
@@ -129,6 +128,7 @@ function App() {
           <Route path="/employees/:id" element={<EmployeePage />} />
           <Route path="/projects" element={<ProjectList projects={projects} onUpdateProject={updateProject} onDeleteProject={deleteProject} clients={clients} employees={employees}/>} />          
           <Route path="/user" element={<UserProfile user={user}/>} />
+          <Route path="/" element={<Home user={user} clients={clients} employees={employees} projects={projects}/>} />
         </Routes>
       </Router>
     </div>
