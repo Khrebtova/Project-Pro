@@ -1,6 +1,6 @@
 {
   "name": "project-pro",
-  "description": "Build scripts for Heroku",
+  "description": "Rails-React app for flatironschool",
   "engines": {
     "node": "16.x"
   },
@@ -8,7 +8,8 @@
     "build": "npm install --prefix client && npm run build --prefix client",
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+    "heroku-postbuild": "npm run clean && npm run build && npm run deploy",
+    "start": "node index.js"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
