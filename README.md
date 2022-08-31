@@ -42,5 +42,7 @@ You can use the following commands to run the application:
 - `npm start --prefix client`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
 
+## Video walkthrough
 
+[https://youtu.be/FGiV7itvO40]
 
